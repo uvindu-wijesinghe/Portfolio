@@ -16,7 +16,7 @@ const Hero = () => {
     'Problem Solver'
   ];
 
-  // Track mouse position for subtle parallax effects
+  // Track mouse position
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   
