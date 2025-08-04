@@ -4,6 +4,7 @@ const Skills = () => {
   const [loaded, setLoaded] = useState(false);
   const [animatedSkills, setAnimatedSkills] = useState([]);
 
+  // Original colors for icons and labels remain unchanged.
   const skills = [
     { letter: 'R', name: 'React', level: 90, category: 'frontend', color: 'bg-blue-500' },
     { letter: 'T', name: 'Tailwind CSS', level: 95, category: 'frontend', color: 'bg-pink-500' },
@@ -24,6 +25,7 @@ const Skills = () => {
     "Tailwind", "Git", "TypeScript", "MySQL", "Docker", "AWS"
   ];
 
+  // Original category colors and borders.
   const categories = [
     { name: 'Frontend', color: 'from-blue-500 to-pink-500', border: 'border-blue-500' },
     { name: 'Backend', color: 'from-green-500 to-blue-600', border: 'border-green-500' },
@@ -34,30 +36,30 @@ const Skills = () => {
   useEffect(() => {
     // Trigger loading animation
     setTimeout(() => setLoaded(true), 100);
-    
+
     // Animate each skill from 0 to its level
     const animateSkills = skills.map(skill => ({ ...skill, animatedLevel: 0 }));
     setAnimatedSkills(animateSkills);
-    
+
     const animationDuration = 1500; // 1.5 seconds
     const startTime = Date.now();
-    
+
     const animate = () => {
       const elapsed = Date.now() - startTime;
       const progress = Math.min(elapsed / animationDuration, 1);
-      
+
       const updatedSkills = skills.map(skill => ({
         ...skill,
         animatedLevel: Math.floor(progress * skill.level)
       }));
-      
+
       setAnimatedSkills(updatedSkills);
-      
+
       if (progress < 1) {
         requestAnimationFrame(animate);
       }
     };
-    
+
     requestAnimationFrame(animate);
   }, []);
 
@@ -106,8 +108,9 @@ const Skills = () => {
                           <span className="text-gray-500 dark:text-gray-400 font-mono">{skill.animatedLevel}%</span>
                         </div>
                         <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5 overflow-hidden">
+                          {/* PROGRESS BAR: unified fill color (bg-blue-500) */}
                           <div 
-                            className={`h-2.5 rounded-full ${skill.color} transition-all duration-1000 ease-out`}
+                            className="h-2.5 rounded-full bg-blue-500 transition-all duration-1000 ease-out"
                             style={{ width: `${skill.animatedLevel}%` }}
                           ></div>
                         </div>
@@ -149,8 +152,8 @@ const Skills = () => {
             {tools.map((tool, index) => (
               <span
                 key={index}
-                className={`px-4 py-2 bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300 rounded-full border border-gray-200 dark:border-gray-700 hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 cursor-default shadow-sm hover:shadow-md ${
-                  index % 4 === 0 ? 'hover:bg-blue-50 dark:hover:bg-blue-900/20' :
+                className={`px-4 py-2 bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300 rounded-full border border-gray-200 dark:border-gray-700 hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 cursor-default shadow-sm hover:shadow-md 
+                ${index % 4 === 0 ? 'hover:bg-blue-50 dark:hover:bg-blue-900/20' :
                   index % 4 === 1 ? 'hover:bg-pink-50 dark:hover:bg-pink-900/20' :
                   index % 4 === 2 ? 'hover:bg-green-50 dark:hover:bg-green-900/20' :
                   'hover:bg-gray-50 dark:hover:bg-gray-700'
