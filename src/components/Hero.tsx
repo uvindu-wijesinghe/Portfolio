@@ -16,19 +16,19 @@ const Hero = () => {
     'Problem Solver'
   ];
 
-  // Track mouse position
+  
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   
-  // More subtle parallax values
+  
   const parallaxX = useTransform(mouseX, [0, window.innerWidth], [-5, 5]);
   const parallaxY = useTransform(mouseY, [0, window.innerHeight], [-5, 5]);
   
-  // Gentle tilt values for profile picture
+  
   const tiltX = useTransform(mouseX, [0, window.innerWidth], [-3, 3]);
   const tiltY = useTransform(mouseY, [0, window.innerHeight], [-3, 3]);
 
-  // Typewriter effect
+  
   useEffect(() => {
     const handleType = () => {
       const i = loopNum % roles.length;
@@ -81,7 +81,7 @@ const Hero = () => {
     }
   };
 
-  // Check if device supports touch
+  
   useEffect(() => {
     setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
   }, []);
